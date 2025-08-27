@@ -1,0 +1,136 @@
+.sphere-button {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #fff6e0 0%, #ffd54f 15%, #ffb300 40%, #ff6b35 80%);
+  background-size: 200% 200%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(255, 140, 0, 0.45),
+    0 0 60px rgba(255, 193, 7, 0.35),
+    inset 0 0 25px rgba(255, 255, 255, 0.25);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.45s ease;
+  animation: float 4s ease-in-out infinite, gradientShift 6s ease-in-out infinite;
+}
+
+.sphere-button .label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: linear-gradient(90deg, #fff, #fff8e1, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Aura glow */
+.sphere-button .aura {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.25), rgba(255, 107, 53, 0.12), transparent 70%);
+  filter: blur(12px);
+  z-index: 0;
+}
+
+/* Rotating ring */
+.sphere-button .ring {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.35) inset;
+  animation: spin 8s linear infinite;
+  z-index: 1;
+}
+
+/* Orbiting sparkles */
+.sphere-button .orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff, #ffe082);
+  border-radius: 50%;
+  transform-origin: -50px -50px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.sphere-button .orbit-1 { animation: orbit 3.8s linear infinite; }
+.sphere-button .orbit-2 { animation: orbit 5.2s linear infinite; transform-origin: -65px -65px; opacity: 0.8; }
+.sphere-button .orbit-3 { animation: orbit 6.6s linear infinite; transform-origin: -80px -80px; opacity: 0.6; }
+
+/* Ripple on hover */
+.sphere-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.sphere-button:hover::after { opacity: 1; }
+
+.sphere-button:hover {
+  transform: scale(1.12) rotate(4deg);
+  box-shadow:
+    0 12px 40px rgba(255, 140, 0, 0.55),
+    0 0 90px rgba(255, 193, 7, 0.45),
+    inset 0 0 35px rgba(255, 255, 255, 0.3);
+  animation-play-state: paused;
+}
+
+.sphere-button:active {
+  transform: scale(0.95) rotate(-2deg);
+}
+
+/* Keyframes */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translate(-50%, -50%); }
+  to { transform: rotate(360deg) translate(-50%, -50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Support mouse position ripple */
+.sphere-button {
+  --mx: 50%;
+  --my: 50%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sphere-button { width: 130px; height: 130px; font-size: 16px; }
+  .sphere-button .ring { inset: 10px; }
+}

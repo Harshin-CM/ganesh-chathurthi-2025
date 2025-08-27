@@ -1,0 +1,83 @@
+.festive-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 10%, rgba(255, 235, 59, 0.12), transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.10), transparent 45%),
+              linear-gradient(135deg, #1a237e, #311b92, #4a148c);
+  overflow: hidden;
+}
+
+/* Toran garlands */
+.toran.top {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 90px;
+  background: repeating-linear-gradient(45deg, #2e7d32 0 10px, #1b5e20 10px 20px);
+  clip-path: polygon(0 0, 100% 0, 85% 50%, 70% 0, 55% 50%, 40% 0, 25% 50%, 10% 0, 0 0);
+  filter: drop-shadow(0 8px 8px rgba(0,0,0,0.25));
+}
+
+.toran-left { left: 0; transform: skewY(2deg); }
+.toran-right { right: 0; transform: scaleX(-1) skewY(2deg); }
+
+/* Diyas */
+.diya-row {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 32px;
+}
+
+.diya {
+  position: relative;
+  width: 30px;
+  height: 18px;
+  border-radius: 0 0 18px 18px;
+  background: radial-gradient(circle at 50% 10%, #ffcc80, #ff8f00 70%);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.diya::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 18px;
+  background: radial-gradient(circle at 50% 30%, #fff59d, #ffd54f 60%, rgba(255, 171, 0, 0.8));
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  filter: blur(0.2px) drop-shadow(0 0 8px rgba(255, 193, 7, 0.8));
+  animation: flicker 1.2s ease-in-out infinite;
+}
+
+/* Confetti */
+.confetti {
+  position: absolute;
+  top: -10%;
+  width: 2px;
+  height: 10px;
+  background: linear-gradient(#ffd700, #ff6b35);
+  opacity: 0.7;
+  animation: fall 6s linear infinite;
+}
+
+.confetti-1 { left: 15%; animation-delay: 0s; height: 12px; }
+.confetti-2 { left: 45%; animation-delay: 1.2s; height: 16px; }
+.confetti-3 { left: 75%; animation-delay: 2.4s; height: 14px; }
+
+@keyframes flicker {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  50% { transform: translateX(-50%) scale(1.15); opacity: 0.9; }
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
