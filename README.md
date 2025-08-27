@@ -1,4 +1,4 @@
-# Ganesh Chaturthi Celebration 🐘✨
+# Ganesh Chaturthi Celebration ✨
 
 A beautiful React application celebrating Ganesh Chaturthi with interactive components and festive animations.
 
